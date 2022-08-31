@@ -4,6 +4,7 @@ const colors = require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
+const proxy = require("http-proxy-middleware");
 require("dotenv").config();
 const connectDB = require("./config/connectDB");
 const authRoutes = require("./routes/authRoutes");
@@ -29,6 +30,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(proxy(['/api'], { target: 'http://localhost:4747' }));
 
 //routes
 app.use("/api/auth", authRoutes);
