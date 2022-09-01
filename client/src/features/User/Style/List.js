@@ -31,6 +31,7 @@ const Img = styled.img.attrs((props) => ({
   className: "img-fluid",
 }))`
   width: 40px;
+  cursor: pointer;
 `;
 
 const Subtitle = styled.div.attrs((props) => ({
@@ -41,7 +42,8 @@ const Subtitle = styled.div.attrs((props) => ({
 
 const Date = styled.div.attrs((props) => ({
   className: "text-center text-muted",
-}))``;
+}))`
+cursor: pointer;`;
 
 const Delete = styled.span`
   cursor: pointer;
