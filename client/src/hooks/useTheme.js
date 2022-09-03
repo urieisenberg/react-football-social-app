@@ -3,7 +3,7 @@ import { lightTheme, darkTheme } from "../theme/Theme";
 import { BsMoonStars, BsFillSunFill } from "react-icons/bs";
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const setMode = (mode) => {
     window.localStorage.setItem("theme", mode);
