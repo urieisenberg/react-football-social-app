@@ -4,9 +4,12 @@ import { getAllPosts } from "../../../../store/posts/postActions";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
+import Loader from "../../../../components/Loader/Loader";
 
 const MostComments = () => {
-  const { posts, post } = useSelector((state) => state.posts);
+  const { posts, post, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.posts
+  );
   const { comments } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
@@ -20,13 +23,15 @@ const MostComments = () => {
   }, [commentedPosts.length, post, comments, dispatch]);
 
   let content;
-  if (commentedPosts.length === 0)
+  if (isLoading) content = <Loader />;
+  else if (commentedPosts.length === 0 || !isSuccess || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (
       <List.Post>
-        <List.Post.Container>        <List.Post.Title>Most commented posts</List.Post.Title>
-
+        <List.Post.Container>
+          {" "}
+          <List.Post.Title>Most commented posts</List.Post.Title>
           {commentedPosts.map((post) => (
             <Post key={post._id} post={post} />
           ))}

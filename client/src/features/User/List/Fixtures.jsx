@@ -14,7 +14,7 @@ const Fixtures = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
-  const { userInfo, fixtures, isLoading, isError } = useSelector(
+  const { userInfo, fixtures, isLoading, isError, isSuccess } = useSelector(
     (state) => state.user
   );
 
@@ -31,7 +31,7 @@ const Fixtures = () => {
 
   let content;
   if (isLoading) content = <Loader />;
-  else if (!fixtures?.length || isError)
+  else if (!fixtures?.length || isError || !isSuccess)
     content = (
       <User.Title>
         {username

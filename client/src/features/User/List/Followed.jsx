@@ -10,7 +10,7 @@ import Loader from "../../../components/Loader/Loader";
 const Followed = () => {
   const { username } = useParams();
   const { user } = useSelector((state) => state.auth);
-  const { userInfo, followed, isLoading } = useSelector((state) => state.user);
+  const { userInfo, followed, isLoading, isError, isSuccess } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Followed = () => {
 
   let content;
   if (isLoading) content = <Loader />;
-  else if (followed.length === 0)
+  else if ((followed.length === 0 || !isSuccess) || isError)
     content = (
       <User.Title>
         no one follow {user.username === username ? "you" : username}

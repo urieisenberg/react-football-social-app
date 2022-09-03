@@ -16,7 +16,9 @@ const UserPosts = () => {
   const { username } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { post, userPosts, isLoading } = useSelector((state) => state.posts);
+  const { post, userPosts, isLoading, isError, isSuccess } = useSelector(
+    (state) => state.posts
+  );
   const { comment, comments } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ const UserPosts = () => {
         <Loader />
       </List>
     );
-  if (userPosts.length === 0)
+  else if ((userPosts.length === 0 || !isSuccess) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

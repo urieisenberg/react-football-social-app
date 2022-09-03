@@ -6,12 +6,13 @@ import Search from "../../../../components/Search/Search";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
+import Loader from "../../../../components/Loader/Loader";
 
 const Posts = () => {
   const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { posts, post } = useSelector((state) => state.posts);
+  const { posts, post, isError, isSuccess, isLoading } = useSelector((state) => state.posts);
   const { comments } = useSelector((state) => state.comments);
 
   const { pathname } = useLocation();
@@ -29,9 +30,10 @@ const Posts = () => {
 
   const path = pathname.substring(pathname.lastIndexOf("/") + 1);
 
-
   let content;
-  if (posts.length === 0) content = <List.Post.H4>No posts found</List.Post.H4>;
+  if (isLoading) content = <Loader />;
+  else if ((posts.length === 0 || !isSuccess) || isError)
+    content = <List.Post.H4>No posts found</List.Post.H4>;
   else if (path === "oldest") {
     content = (
       <List.Post.Container>

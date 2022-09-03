@@ -8,7 +8,7 @@ import Transition from "../../../../components/Transition/Transition";
 import Loader from "../../../../components/Loader/Loader";
 
 const LikedPosts = () => {
-  const { post, likedPosts, isLoading } = useSelector((state) => state.posts);
+  const { post, likedPosts, isLoading, isError, isSuccess } = useSelector((state) => state.posts);
   const { comments } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const LikedPosts = () => {
         <Loader />
       </List>
     );
-  if (likedPosts.length === 0)
+  else if ((likedPosts.length === 0 || !isSuccess) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

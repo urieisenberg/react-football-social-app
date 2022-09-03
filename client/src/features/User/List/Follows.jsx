@@ -10,7 +10,9 @@ import Loader from "../../../components/Loader/Loader";
 const Follows = () => {
   const { username } = useParams();
   const { user } = useSelector((state) => state.auth);
-  const { userInfo, follows, isLoading } = useSelector((state) => state.user);
+  const { userInfo, follows, isLoading, isError, isSuccess } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,11 +25,11 @@ const Follows = () => {
 
   let content;
   if (isLoading) content = <Loader />;
-  else if (follows.length === 0)
+  else if (follows.length === 0 || !isSuccess || isError)
     content = (
       <User.Title>
-        {user.username === username ? "you" : username + " is "} not following any
-        user
+        {user.username === username ? "you" : username + " is "} not following
+        any user
       </User.Title>
     );
   else
