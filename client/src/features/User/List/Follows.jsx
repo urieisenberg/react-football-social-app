@@ -28,7 +28,7 @@ const Follows = () => {
   else if (follows.length === 0 || !isSuccess || isError)
     content = (
       <User.Title>
-        {user.username === username ? "you do" : username + " is "} not follow
+        {user.username === username ? "you do " : username + " is "} not follow
         any user
       </User.Title>
     );
