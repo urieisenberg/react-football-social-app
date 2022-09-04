@@ -17,15 +17,16 @@ const Share = ({ type }) => {
   };
 
   const handleKey = (e) => {
-    if (e.key === "Enter") {
-      dispatch(
-        addPost({
-          content: post.content,
-          type: post.type,
-        })
-      );
-      setNewPost("");
-    }
+    if (newPost.length > 1)
+      if (e.key === "Enter") {
+        dispatch(
+          addPost({
+            content: post.content,
+            type: post.type,
+          })
+        );
+        setNewPost("");
+      }
     if (e.key === "Escape") {
       setNewPost("");
     }
@@ -35,13 +36,13 @@ const Share = ({ type }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      addPost({
-        content: post.content,
-        type: post.type,
-      })
-    );
+    newPost.length > 1 &&
+      dispatch(
+        addPost({
+          content: post.content,
+          type: post.type,
+        })
+      );
     setNewPost("");
     type === "feed" && navigate("newest");
   };
