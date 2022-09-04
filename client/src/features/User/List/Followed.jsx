@@ -26,7 +26,7 @@ const Followed = () => {
   else if ((followed.length === 0 || !isSuccess) || isError)
     content = (
       <User.Title>
-        no one follow {user.username === username ? "you" : username}
+        no one follows {user.username === username ? "you" : username}
       </User.Title>
     );
   else
