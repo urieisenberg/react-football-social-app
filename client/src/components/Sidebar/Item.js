@@ -9,7 +9,7 @@ const Item = ({ title, icon, link, route, action }) => {
         <Sidebar.Link
           data-bs-toggle="tooltip"
           data-bs-placement="right"
-          title={title}
+          title={title || "logout"}
           onClick={action}
           as={NavLink}
           to={link ? `/${link}` : route}
