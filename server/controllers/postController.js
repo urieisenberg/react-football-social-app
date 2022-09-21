@@ -195,7 +195,6 @@ const getUserPosts = async (req, res) => {
   }
 };
 
-
 //get all posts liked by user
 const getLikedPosts = async (req, res) => {
   try {
