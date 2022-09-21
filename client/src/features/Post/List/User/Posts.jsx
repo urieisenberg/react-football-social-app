@@ -9,7 +9,6 @@ import Search from "../../../../components/Search/Search";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
-import Loader from "../../../../components/Loader/Loader";
 
 const UserPosts = () => {
   const [search, setSearch] = useState("");
@@ -36,13 +35,7 @@ const UserPosts = () => {
   }, [search, post, userPosts.length, comments, dispatch, username]);
 
   let content;
-  if (isLoading)
-    content = (
-      <List>
-        <Loader />
-      </List>
-    );
-  else if ((userPosts.length === 0 || !isSuccess) || isError)
+   if ((userPosts.length === 0 || !isSuccess) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

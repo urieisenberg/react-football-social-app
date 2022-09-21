@@ -6,7 +6,6 @@ import Share from "../../Share";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
-import Loader from "../../../../components/Loader/Loader";
 
 const Posts = () => {
   const { teamid, teamname } = useParams();
@@ -22,8 +21,7 @@ const Posts = () => {
   }, [teamPosts.length, post, comments, dispatch, teamid]);
 
   let content;
-  if (isLoading) content = <Loader />;
-  else if ((teamPosts.length === 0 || !isSuccess) || isError)
+   if ((teamPosts.length === 0 || !isSuccess) || isError)
     content = <List.Post.H4>No {teamname} fans posts found</List.Post.H4>;
   else
     content = (

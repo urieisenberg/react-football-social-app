@@ -4,7 +4,6 @@ import { getAllPosts } from "../../../../store/posts/postActions";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
-import Loader from "../../../../components/Loader/Loader";
 
 const MostComments = () => {
   const { posts, post, isLoading, isSuccess, isError } = useSelector(
@@ -23,8 +22,7 @@ const MostComments = () => {
   }, [commentedPosts.length, post, comments, dispatch]);
 
   let content;
-  if (isLoading) content = <Loader />;
-  else if (commentedPosts.length === 0 || !isSuccess || isError)
+  if (commentedPosts.length === 0 || !isSuccess || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

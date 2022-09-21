@@ -5,7 +5,6 @@ import { getLikedPosts } from "../../../../store/posts/postActions";
 import Post from "../../Item/Post";
 import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
-import Loader from "../../../../components/Loader/Loader";
 
 const LikedPosts = () => {
   const { post, likedPosts, isLoading, isError, isSuccess } = useSelector((state) => state.posts);
@@ -28,13 +27,7 @@ const LikedPosts = () => {
   ]);
 
   let content;
-  if (isLoading)
-    content = (
-      <List>
-        <Loader />
-      </List>
-    );
-  else if ((likedPosts.length === 0 || !isSuccess) || isError)
+   if ((likedPosts.length === 0 || !isSuccess) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (
