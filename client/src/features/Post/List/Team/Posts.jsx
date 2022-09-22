@@ -10,7 +10,7 @@ import Transition from "../../../../components/Transition/Transition";
 const Posts = () => {
   const { teamid, teamname } = useParams();
 
-  const { teamPosts, post, isLoading, isError, isSuccess } = useSelector(
+  const { teamPosts, post, isLoading, isError } = useSelector(
     (state) => state.posts
   );
   const { comments } = useSelector((state) => state.comments);
@@ -21,7 +21,7 @@ const Posts = () => {
   }, [teamPosts.length, post, comments, dispatch, teamid]);
 
   let content;
-   if ((teamPosts.length === 0 || !isSuccess) || isError)
+  if ((teamPosts.length === 0 && !isLoading) || isError)
     content = <List.Post.H4>No {teamname} fans posts found</List.Post.H4>;
   else
     content = (

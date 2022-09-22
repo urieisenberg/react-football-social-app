@@ -6,7 +6,9 @@ import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
 
 const MostLikes = () => {
-  const { posts, post, isSuccess, isLoading, isError } = useSelector((state) => state.posts);
+  const { posts, post, isSuccess, isLoading, isError } = useSelector(
+    (state) => state.posts
+  );
   const { comments } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const MostLikes = () => {
   }, [likedPosts.length, likedPosts.likes, post, comments, dispatch]);
 
   let content;
-  if ((likedPosts.length === 0 || !isSuccess) || isError)
+  if ((likedPosts.length === 0 && isLoading) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

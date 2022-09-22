@@ -7,13 +7,14 @@ import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
 
 const LikedPosts = () => {
-  const { post, likedPosts, isLoading, isError, isSuccess } = useSelector((state) => state.posts);
+  const { post, likedPosts, isLoading, isError } = useSelector(
+    (state) => state.posts
+  );
   const { comments } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
 
   const { username } = useParams();
-
 
   useEffect(() => {
     dispatch(getLikedPosts(username));
@@ -27,7 +28,7 @@ const LikedPosts = () => {
   ]);
 
   let content;
-   if ((likedPosts.length === 0 || !isSuccess) || isError)
+  if ((likedPosts.length === 0 && !isLoading) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

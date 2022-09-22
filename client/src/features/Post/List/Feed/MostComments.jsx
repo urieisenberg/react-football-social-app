@@ -6,7 +6,7 @@ import List from "../Style";
 import Transition from "../../../../components/Transition/Transition";
 
 const MostComments = () => {
-  const { posts, post, isLoading, isSuccess, isError } = useSelector(
+  const { posts, post, isLoading, isError } = useSelector(
     (state) => state.posts
   );
   const { comments } = useSelector((state) => state.comments);
@@ -22,7 +22,7 @@ const MostComments = () => {
   }, [commentedPosts.length, post, comments, dispatch]);
 
   let content;
-  if (commentedPosts.length === 0 || !isSuccess || isError)
+  if ((commentedPosts.length === 0 && isLoading) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else
     content = (

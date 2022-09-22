@@ -11,7 +11,7 @@ const Posts = () => {
   const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { posts, post, isError, isSuccess, isLoading } = useSelector(
+  const { posts, post, isError, isLoading } = useSelector(
     (state) => state.posts
   );
   const { comments } = useSelector((state) => state.comments);
@@ -32,7 +32,7 @@ const Posts = () => {
   const path = pathname.substring(pathname.lastIndexOf("/") + 1);
 
   let content;
-  if (posts.length === 0 || !isSuccess || isError)
+  if ((posts.length === 0 && !isLoading) || isError)
     content = <List.Post.H4>No posts found</List.Post.H4>;
   else if (path === "oldest") {
     content = (
