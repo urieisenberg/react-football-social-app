@@ -23,7 +23,7 @@ const Followed = () => {
 
   let content;
   if (isLoading) content = <Loader />;
-  else if ((followed.length === 0 && isLoading) || isError)
+  else if ((followed.length === 0 && !isLoading) || isError)
     content = (
       <User.Title>
         no one follows {user.username === username ? "you" : username}
