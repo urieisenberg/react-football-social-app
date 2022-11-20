@@ -1,5 +1,4 @@
 # football-api-mern
-https://football-api-mern.herokuapp.com
-
+https://serie-a-social-app.herokuapp.com
 
 
